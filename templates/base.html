@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}MOOD{% endblock %}</title>
+  </head>
+  <body>
+
+        <a href="{% url 'signup' %}">signup</a>
+      <hr>
+
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
+  </body>
+</html>
