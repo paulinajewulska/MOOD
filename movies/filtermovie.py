@@ -10,21 +10,23 @@ def filtermovie(genre, answer1, answer2, answer3, answer4):
     sentgenre = analyzer(genre)
     sentuser = (sentanswer1 + sentanswer2 + sentanswer3 + sentanswer4 + sentgenre) / 5
     movie2 = []
-    with open('moviesent.json') as infile:
+    with open('movies/moviesent.json') as infile:
         movie = json.load(infile)
 
     for i in range(0, len(movie)):
         txt = movie[i]['genres']
         x = txt.split("|")
         for y in range(0, len(x)):
-            if genre in x[y]:
+            if genre.lower() in x[y].lower():
                 if movie[i]['sentiment'] >= sentuser:
                     movie2.append(
-                        {"title": movie[i]['original_title'], "year": movie[i]['release_year'],
-                         "director": movie[i]['director'], "cast": movie[i]['cast'], "link": movie[i]['homepage'],
-                         "ratings": movie[i]['vote_average'], "genres": movie[i]['genres'],
-                         "duration": movie[i]['runtime'], "overview": movie[i]['overview'],
-                         "sentiment": movie[i]['sentiment']})
+                       { "title": movie[i]['title'], "ratings": movie[i]['ratings'], "genres": movie[i]['genres']})
+                        
+                        # {"title": movie[i]['original_title'], "year": movie[i]['release_year'],
+                        #  "director": movie[i]['director'], "cast": movie[i]['cast'], "link": movie[i]['homepage'],
+                        #  "ratings": movie[i]['vote_average'], "genres": movie[i]['genres'],
+                        #  "duration": movie[i]['runtime'], "overview": movie[i]['overview'],
+                        #  "sentiment": movie[i]['sentiment']})
 
     #jsonFile = open("filterhistory.json", "r")  # Open the JSON file for reading
     #data = json.load(jsonFile)  # Read the JSON into the buffer

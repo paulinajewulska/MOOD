@@ -4,11 +4,12 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  <p><a href="{% url 'logout' %}">logout</a></p>
+Hi {{ user.username }}!
+<p><a href="{% url 'logout' %}">logout</a></p>
 {% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">login</a>
-      <a href="{% url 'signup' %}">Sign up</a>
+<p>You are not logged in</p>
+<a href="{% url 'login' %}">login</a>
+<a href="{% url 'signup' %}">Sign up</a>
+<a href="{% url 'questions' %}" class="btn btn-light">Use app without login</a>
 {% endif %}
 {% endblock %}
