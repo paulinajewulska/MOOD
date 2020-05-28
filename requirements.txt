@@ -1,1 +1,6 @@
 Django~=3.0.6
+pip install vaderSentiment
+pip install kagle
+pip install pandas
+Pip install nltk
+python -m nltk.downloader stopwords
