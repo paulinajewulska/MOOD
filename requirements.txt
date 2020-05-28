@@ -1,6 +1,5 @@
 Django~=3.0.6
-pip install vaderSentiment
-pip install kagle
-pip install pandas
-Pip install nltk
-python -m nltk.downloader stopwords
+vaderSentiment~=3.3.2
+nltk~=3.5.0
+kaggle~=1.5.6 
+pandas~=-1.0.3
