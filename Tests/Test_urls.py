@@ -4,6 +4,6 @@ from users.views import SignUp
 
 class Test_urls(SimpleTestCase):
 
-       def test_list_url_is_resolved(self):
+       def test_signup_url_is_resolved(self):
             url = reverse('signup')
             self.assertEquals(resolve(url).func.view_class, SignUp)
