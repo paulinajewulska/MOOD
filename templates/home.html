@@ -2,14 +2,22 @@
 
 {% block title %}Home{% endblock %}
 
-{% block content %}
-{% if user.is_authenticated %}
-Hi {{ user.username }}!
-<p><a href="{% url 'logout' %}">logout</a></p>
-{% else %}
-<p>You are not logged in</p>
-<a href="{% url 'login' %}">login</a>
-<a href="{% url 'signup' %}">Sign up</a>
-<a href="{% url 'questions' %}" class="btn btn-light">Use app without login</a>
-{% endif %}
-{% endblock %}
+<div class="container home">
+    {% block content %}
+    {% if user.is_authenticated %}
+    <h2> Welcome {{ user.username }}! </h2>
+    <a {% else %} <h1 class="">MOOD</h1>
+        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+        <a href="{% url 'signup' %}" class="btn btn-light">Sign up</a>
+        <br />
+        <a href="{% url 'questions' %}" class="btn btn-light">Use app without login</a>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <br />
+        <a href="{% url 'questions' %}" class="btn btn-primary">Find me a movie!</a>
+        <br />
+        </br>
+        <a href="{% url 'logout' %}" class="btn btn-light">Logout</a>
+        {% endif %}
+        {% endblock %}
+</div>
