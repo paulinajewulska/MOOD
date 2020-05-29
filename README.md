@@ -45,12 +45,6 @@ The user can help the application in the selection of appropriate entertainment.
 Using ML, we can match movies to the user,  so that he can see what he wants  
 - Matching podcasts, books,  movies and series 
 
-The user can also choose to entertain for a longer time and grade it later. 
-- Information where find mental help if user often has a bad day  
-
-The application will recommend other websites or applications that help, for example, in the treatment of depression. 
-- Chat Bot for logged user  
-
 Register user can talk to the bot and match the result more closely. 
 - Statistics about preferences of users using  
 
@@ -65,7 +59,6 @@ time range, age range, Sex, Period of year(winter,spring,etc...)
 - as a user I would like to see the rating of the film I got 
 - as a user I would like to see a list of movies in the database 
 - as a user I would like to rate movies  
-- as a user I would like to see the link or application name where to look for help 
 
 ## Project roadmap: 
 
@@ -98,14 +91,15 @@ time range, age range, Sex, Period of year(winter,spring,etc...)
 - Implement of matching function 
 - Display results to the user (not logged) 
 - Add registration and login 
-- Implement chat bot  
-- Implement function for matching  data from chat bot  
 - Write some tests 
 
 ### SPRINT 6: 
 - Creation of statistics and displaying them 
-- Add information about mental help to users with continuing bad mood 
 - Write some tests 
 
 ### SPRINT 7: 
 - Final corections and test
+
+### Added by mwmajew:
+
+- average movie score for imdb and average score for the user input
