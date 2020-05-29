@@ -16,13 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
-from questions import views
+from questions.views import get_all_questions, get_results
+from movies.views import get_movie_list
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),  # new
-    path('users/', include('django.contrib.auth.urls')),
-    path('questions/', views.get_all_questions,name="questions"),
-    path('results/', views.get_results,name="results"),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path("admin/", admin.site.urls),
+    path("users/", include("users.urls")),  # new
+    path("users/", include("django.contrib.auth.urls")),
+    path("questions/", get_all_questions, name="questions"),
+    path("results/", get_results, name="results"),
+    path("movies_list/", get_movie_list, name="movies_list"),
+    path("", TemplateView.as_view(template_name="home.html"), name="home"),
 ]

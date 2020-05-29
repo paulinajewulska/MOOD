@@ -11,6 +11,8 @@
         <a href="{% url 'signup' %}" class="btn btn-light">Sign up</a>
         <br />
         <a href="{% url 'questions' %}" class="btn btn-light">Use app without login</a>
+        <br />
+        <a href="{% url 'movies_list' %}" class="btn btn-light">Movies list</a>
         {% endif %}
         {% if user.is_authenticated %}
         <br />
