@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}QUESTIONS{% endblock %}
+
+{% block content %}
+<h1>Questions</h1>
+{% if form %}
+
+<form action="{% url 'results' %}" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Choose the movie for me" class="btn btn-primary">
+</form>
+
+{% else %}
+<p>Something went wrong</p>
+{% endif %}
+{% endblock %}

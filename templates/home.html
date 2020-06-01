@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+<div class="container home">
+    {% block content %}
+    {% if user.is_authenticated %}
+    <h2> Welcome {{ user.username }}! </h2>
+    <a {% else %} <h1 class="">MOOD</h1>
+        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+        <a href="{% url 'signup' %}" class="btn btn-light">Sign up</a>
+        <br />
+        <a href="{% url 'questions' %}" class="btn btn-light">Use app without login</a>
+        <br />
+        <a href="{% url 'movies_list' %}" class="btn btn-light">Movies list</a>
+
+        {% endif %}
+        {% if user.is_authenticated %}
+        <br />
+
+        <a href="{% url 'questions' %}" class="btn btn-primary">Find me a movie!</a>
+            <a href="{% url 'movies_rating' %}" class="btn btn-light">Rate movies</a>
+           <a href="{% url 'movies_list' %}" class="btn btn-light">Movies list</a>
+            <br />
+
+        <br />
+        </br>
+        <a href="{% url 'logout' %}" class="btn btn-light">Logout</a>
+        {% endif %}
+        {% endblock %}
+</div>

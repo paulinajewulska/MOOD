@@ -1,0 +1,68 @@
+[
+    {
+        "model": "movies.Movie",
+        "fields": {
+            "title": "Goosebumps",
+            "ratings": 6.2,
+            "genres": "Adventure|Horror|Comedy",
+            "sentiment": 0.45,
+            "mood_rate": 0,
+            "votes_number": 0
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "fields": {
+            "title": "The Witch",
+            "ratings": 5.8,
+            "genres": "Mystery|Horror",
+            "sentiment": 0.03,
+            "mood_rate": 0,
+            "votes_number": 0
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "fields": {
+            "title": "Knock Knock",
+            "ratings": 4.8,
+            "genres": "Drama|Horror|Thriller",
+            "sentiment": 0.79,
+            "mood_rate": 0,
+            "votes_number": 0
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "fields": {
+            "title": "Poltergeist",
+            "ratings": 7.8,
+            "genres": "Horror|Thriller",
+            "sentiment": 0.12,
+            "mood_rate": 0,
+            "votes_number": 0
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "fields": {
+            "title": "Maggie",
+            "ratings": 5.1,
+            "genres": "Horror",
+            "sentiment": 0.1,
+            "mood_rate": 0,
+            "votes_number": 0
+        }
+    },
+    {
+        "model": "movies.Movie",
+        "fields": {
+            "title": "Sinister 2",
+            "ratings": 5.5,
+            "genres": "Horror",
+            "sentiment": 0.2,
+            "mood_rate": 0,
+            "votes_number": 0
+        }
+    }
+]
