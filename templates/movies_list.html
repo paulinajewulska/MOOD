@@ -6,7 +6,7 @@
 {% csrf_token %}
 <h2 style="margin: 0.5rem 0.5rem 2rem;">Movies</h2>
 <div style="display: flex; flex-wrap: wrap; width: 100%;">
-<a href="{% url 'home' %}" class="btn btn-light">Home</a>
+    <a href="{% url 'home' %}" class="btn btn-light">Home</a>
     {% for movie in movies %}
     <form method="post"">
         <div class=" card" style="width: 15rem; margin: 1.5rem 1rem;">
@@ -15,7 +15,7 @@
             <li class="list-group-item">Rating: {{ movie.ratings }} </li>
             <li class="list-group-item">Genres: {{ movie.genres }} </li>
             <li class="list-group-item">Our Rating: {{ movie.mood_rate }} </li>
-            <a href="{% url 'movies_rating' %}"  class="btn btn-light">Rate movies</a>
+            <a href="{% url 'movies_rating' %}" class="btn btn-light">Rate movies</a>
         </ul>
 </div>
 </form>
