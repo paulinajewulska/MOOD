@@ -8,18 +8,21 @@
 <div style="display: flex; flex-wrap: wrap; width: 100%;">
     <a href="{% url 'home' %}" class="btn btn-light">Home</a>
     {% for movie in movies %}
-    <form method="post"">
-        <div class=" card" style="width: 15rem; margin: 1.5rem 1rem;">
+    <div class=" card" style="width: 15rem; margin: 1.5rem 1rem;">
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Title: {{ movie.title }}</li>
-            <li class="list-group-item">Rating: {{ movie.ratings }} </li>
-            <li class="list-group-item">Genres: {{ movie.genres }} </li>
-            <li class="list-group-item">Our Rating: {{ movie.mood_rate }} </li>
-            <a href="{% url 'movies_rating' %}" class="btn btn-light">Rate movies</a>
+            <form action="{% url 'movies_list' %}" method="POST">{% csrf_token %}
+                <li class="list-group-item">Title: {{ movie.title }}</li>
+                <li class="list-group-item">Rating: {{ movie.ratings }} </li>
+                <li class="list-group-item">Genres: {{ movie.genres }} </li>
+                <li class="list-group-item">Our Rating: {{ movie.mood_rate }} </li>
+                <li class="list-group-item">
+                    {{ form }} <input id="title" name="title" type="hidden" value="{{movie.title}}">
+                    <input type="submit" value="Rate" class="btn btn-primary">
+                </li>
+            </form>
         </ul>
-</div>
-</form>
-{% endfor %}
+    </div>
+    {% endfor %}
 </div>
 
 {% endblock %}

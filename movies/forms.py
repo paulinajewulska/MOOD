@@ -11,9 +11,6 @@ def sort_movies():
     movies.sort(key=lambda x: x.get('ratings'), reverse=True)
     return movies
 
-
-class RatingMovies(forms.Form):
-    movies = sort_movies()
-    movie = random.choice(movies)
+class GetRatingMovies(forms.Form):
     options = ((1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5'))
-    rating = forms.ChoiceField(choices=options, label=movie['title'])
+    rating = forms.ChoiceField(choices=options)

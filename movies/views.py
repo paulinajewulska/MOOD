@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .models import Movie
-from movies.forms import RatingMovies, sort_movies
+from movies.forms import sort_movies, GetRatingMovies
 import random
+from decimal import Decimal
 
 
 def get_movie_list(request):
@@ -14,26 +15,38 @@ def get_movie_list(request):
 
 def sort_movie_list(request):
     all_movies = sort_movies()
-    movies = RatingMovies.movie
-    if request.method == 'POST':
-        all_movies[3]['mood_rate'] = request.POST['rating']
+    form = GetRatingMovies()
     context = {
-        'movies.mood_rate' : all_movies[3]['mood_rate'],
-        "movies": all_movies
+        "movies": all_movies,
+        'form': form,
     }
 
+    if request.method == 'POST':
+        form = GetRatingMovies(request.POST)
+        result = {
+            'rating': request.POST['rating'],
+            'title': request.POST['title'],
+        }
+
+        chosen_movie = Movie.objects.filter(title=result["title"])[0]
+        chosen_movie.votes_number += 1
+        new_mood_rate = (chosen_movie.mood_rate + Decimal(result["rating"])) / chosen_movie.votes_number
+        chosen_movie.mood_rate += new_mood_rate
+        chosen_movie.save()
+
+        context = {
+            "movies": all_movies,
+            'form': form,
+        }
     return render(request, "movies_list.html", context)
 
-
-def movies_rating(request):
-    form = RatingMovies()
-    movies = RatingMovies.movie
+def get_movies_rating(request):
+    form = GetRatingMovies()
     context = {
-        'movies' : movies,
-        'form': form
+        'form': form,
     }
-    return render( request, 'movies_rating.html', context)
 
+    return render(request, 'movies_rating.html', context)
 
 def rating(request):
     if request.method == 'POST':
