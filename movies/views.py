@@ -48,8 +48,25 @@ def get_movies_rating(request):
 
     return render(request, 'movies_rating.html', context)
 
-def rating(request):
-    if request.method == 'POST':
-        context = {'form' : request.POST}
+def get_movies_sorted_by_mood_rating(request):
+    all_movies = list(Movie.objects.all())
+    all_movies.sort(key=lambda x: x.mood_rate, reverse=True)
+    form = GetRatingMovies()
 
-        return render(request, "rating.html", context)
+    context = {
+        "movies": all_movies,
+        'form': form,
+    }
+    return render(request, "movies_list.html", context)
+   
+def get_movies_list_sort_by_rating(request):
+    all_movies = list(Movie.objects.all())
+    all_movies.sort(key=lambda x: x.ratings, reverse=True)
+    form = GetRatingMovies()
+
+    context = {
+        "movies": all_movies,
+        'form': form,
+    }
+    return render(request, "movies_list.html", context)
+   
