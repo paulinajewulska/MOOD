@@ -29,6 +29,8 @@ MOOD is a simple web application that checks users' mood and choose adequate ent
 - Backend: Python, Django 
 - Database: SQLite 
 
+Illustration by https://icons8.com.
+
 # Features 
 
 - User registration
