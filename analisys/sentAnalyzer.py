@@ -1,27 +1,4 @@
 import json
-<<<<<<< HEAD
-from analisys.analyzer import analyzer
-from scripts.downloadfile import downloadfile
-from analisys.csvtojson import csvtojson
-
-def main():
-    downloadfile()
-    csvtojson()
-    movie2 = []
-    genres = []
-    with open('movie.json') as infile:
-        movie = json.load(infile)
-
-    with open('moviesent.json', 'w') as f:
-        for i in range(0, len(movie)):
-            if movie[i]['overview'] is not None:
-                movie2.append({"title": movie[i]['original_title'],"year": movie[i]['release_year'],
-                               "director": movie[i]['director'],"cast": movie[i]['cast'],"link": movie[i]['homepage'],
-                               "ratings": movie[i]['vote_average'],"genres":movie[i]['genres'],"duration":movie[i]['runtime'],"overview":movie[i]['overview'],
-                               "sentiment": analyzer(movie[i]['overview'])})
-        json.dump(movie2, f, indent=2)
-
-=======
 
 from analisys.word2vect import tokenizer_obj, max_length, model
 from analisys.csvtojson import csvtojson
@@ -30,7 +7,7 @@ from tensorflow.python.keras.preprocessing.sequence import pad_sequences
 
 
 def main():
-    #csvtojson()
+    # csvtojson()
 
     genres = []
     with open('analisys/tmdb_movie.json') as infile:
@@ -56,8 +33,6 @@ def main():
         # print(sentiment)
         json.dump(movie2, f, indent=2)
 
-
->>>>>>> origin
     with open('genres.json', 'w') as f1:
         for i in range(0, len(movie)):
             txt = movie[i]['genres']
@@ -69,9 +44,5 @@ def main():
         json.dump(genres, f1, indent=2)
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin
 if __name__ == "__main__":
     main()

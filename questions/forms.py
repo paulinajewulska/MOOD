@@ -38,14 +38,7 @@ class GetMoviePreferences(forms.Form):
 
     mood = forms.ChoiceField(choices=choices[0], label=questions[0])
     genre = forms.ChoiceField(choices=choices[1], label=questions[1])
-<<<<<<< HEAD
-    will_lead_to_reflect = forms.ChoiceField(choices=choices[2], label=questions[2])
-    lead_to_think = forms.ChoiceField(choices=choices[3], label=questions[3])
-    kind = forms.ChoiceField(choices=choices[4], label=questions[4])
-    loud_movies = forms.ChoiceField(choices=choices[5], label=questions[5])
-=======
     will_lead_to_reflect = forms.ChoiceField(
         choices=choices[2], label=questions[2])
     lead_to_think = forms.ChoiceField(choices=choices[3], label=questions[3])
     kind = forms.ChoiceField(choices=choices[4], label=questions[4])
->>>>>>> origin
