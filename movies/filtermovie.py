@@ -2,14 +2,23 @@ import json
 from analisys.analyzer import analyzer
 
 
+<<<<<<< HEAD
 def filtermovie(genre, answer1, answer2, answer3, answer4, answer5):
+=======
+def filtermovie(genre, answer1, answer2, answer3, answer4):
+>>>>>>> origin
     sentanswer1 = analyzer(answer1)
     sentanswer2 = analyzer(answer2)
     sentanswer3 = analyzer(answer3)
     sentanswer4 = analyzer(answer4)
+<<<<<<< HEAD
     sentanswer5 = analyzer(answer5)
     sentgenre = analyzer(genre)
     sentuser = (sentanswer1 + sentanswer2 + sentanswer3 + sentanswer4 + sentanswer5 + sentgenre) / 6
+=======
+    sentgenre = analyzer(genre)
+    sentuser = (sentanswer1 + sentanswer2 + sentanswer3 + sentanswer4 + sentgenre) / 5
+>>>>>>> origin
     movie2 = []
     with open('movies/moviesent.json') as infile:
         movie = json.load(infile)

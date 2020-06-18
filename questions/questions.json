@@ -3,7 +3,11 @@
         "model": "questions.Question",
         "pk": 1,
         "fields": {
+<<<<<<< HEAD
             "question_text": "What is your mood today? ?",
+=======
+            "question_text": "How are you?",
+>>>>>>> origin
             "question_category": "mood"
         }
     },
@@ -19,7 +23,11 @@
         "model": "questions.Question",
         "pk": 3,
         "fields": {
+<<<<<<< HEAD
             "question_text": "What movies do you dislike? ?",
+=======
+            "question_text": "Would you like that this movie will make you reflect, wonder?",
+>>>>>>> origin
             "question_category": "will_lead_to_reflect"
         }
     },
@@ -27,7 +35,11 @@
         "model": "questions.Question",
         "pk": 4,
         "fields": {
+<<<<<<< HEAD
             "question_text": "The movie should: ",
+=======
+            "question_text": "This movie will lead you to think about..?",
+>>>>>>> origin
             "question_category": "lead_to_think"
         }
     },
@@ -35,6 +47,7 @@
         "model": "questions.Question",
         "pk": 5,
         "fields": {
+<<<<<<< HEAD
             "question_text": "What ending movie do you prefer? ",
             "question_category": "kind"
         }
@@ -46,5 +59,10 @@
             "question_text": "Which of these loud movies do you like best?  ",
             "question_category": "loud_movies"
         }
+=======
+            "question_text": "What kind of movie?",
+            "question_category": "kind"
+        }
+>>>>>>> origin
     }
 ]

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+<<<<<<< HEAD
 {% block title %}QUESTIONS{% endblock %}
 
 {% block content %}
@@ -14,4 +15,35 @@
 {% else %}
 <p>Something went wrong</p>
 {% endif %}
+=======
+{% block title %}Questions{% endblock %}
+
+{% block content %}
+{% load static %}
+<section class="questions">
+    <h1 class="questions__title">Questions</h1>
+    {% if form %}
+    <div class="questions__form__wrapper">
+
+        <form action="{% url 'results' %}" method="POST" class="questions__form">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="question__wrapper rounded">
+                <label class="question__wrapper__title">{{ field.label }}</label>
+                <div class="question__wrapper__select">
+                    {{ field }}
+                </div>
+            </div>
+            {% endfor %}
+            <input type="submit" value="Choose the movie" class="btn btn-warning questions__btn">
+        </form>
+        <div class="questions__image">
+            <img src="{% static 'images/hugo-chatbot.png' %}">
+        </div>
+    </div>
+    {% else %}
+    <p>Oh no! Something went wrong</p>
+    {% endif %}
+</section>
+>>>>>>> origin
 {% endblock %}

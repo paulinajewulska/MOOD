@@ -4,7 +4,11 @@
         "pk": 1,
         "fields": {
             "question": 1,
+<<<<<<< HEAD
             "choice_text": "I'm happy",
+=======
+            "choice_text": "great",
+>>>>>>> origin
             "coefficient": 1
         }
     },
@@ -13,7 +17,11 @@
         "pk": 2,
         "fields": {
             "question": 1,
+<<<<<<< HEAD
             "choice_text": "I am okey",
+=======
+            "choice_text": "okey",
+>>>>>>> origin
             "coefficient": 0.8
         }
     },
@@ -22,8 +30,13 @@
         "pk": 3,
         "fields": {
             "question": 1,
+<<<<<<< HEAD
             "choice_text": "I'm so bored",
             "coefficient": 0.5
+=======
+            "choice_text": "so-so",
+            "coefficient": 0.8
+>>>>>>> origin
         }
     },
     {
@@ -31,8 +44,13 @@
         "pk": 4,
         "fields": {
             "question": 1,
+<<<<<<< HEAD
             "choice_text": "I'm sad",
             "coefficient": 0.25
+=======
+            "choice_text": "bad",
+            "coefficient": 1
+>>>>>>> origin
         }
     },
     {
@@ -40,8 +58,13 @@
         "pk": 5,
         "fields": {
             "question": 1,
+<<<<<<< HEAD
             "choice_text": "I hate the world",
             "coefficient": 0
+=======
+            "choice_text": "awful",
+            "coefficient": 0.8
+>>>>>>> origin
         }
     },
     {
@@ -59,7 +82,11 @@
         "fields": {
             "question": 2,
             "choice_text": "comedy",
+<<<<<<< HEAD
             "coefficient": 1
+=======
+            "coefficient": 0.1
+>>>>>>> origin
         }
     },
     {
@@ -157,8 +184,13 @@
         "pk": 18,
         "fields": {
             "question": 3,
+<<<<<<< HEAD
             "choice_text": "horror",
             "coefficient": 0.2
+=======
+            "choice_text": "yes",
+            "coefficient": 0.8
+>>>>>>> origin
         }
     },
     {
@@ -166,8 +198,13 @@
         "pk": 19,
         "fields": {
             "question": 3,
+<<<<<<< HEAD
             "choice_text": "comedy",
             "coefficient": 0
+=======
+            "choice_text": "no",
+            "coefficient": 0.2
+>>>>>>> origin
         }
     },
     {
@@ -175,16 +212,26 @@
         "pk": 20,
         "fields": {
             "question": 3,
+<<<<<<< HEAD
             "choice_text": "action",
             "coefficient": 0.2
+=======
+            "choice_text": "maybe",
+            "coefficient": 0.8
+>>>>>>> origin
         }
     },
     {
         "model": "questions.Choice",
         "pk": 21,
         "fields": {
+<<<<<<< HEAD
             "question": 3,
             "choice_text": "crime",
+=======
+            "question": 4,
+            "choice_text": "art",
+>>>>>>> origin
             "coefficient": 0.8
         }
     },
@@ -192,51 +239,82 @@
         "model": "questions.Choice",
         "pk": 22,
         "fields": {
+<<<<<<< HEAD
             "question": 3,
             "choice_text": "fantasy",
             "coefficient": 0.2
+=======
+            "question": 4,
+            "choice_text": "history",
+            "coefficient": 0.8
+>>>>>>> origin
         }
     },
     {
         "model": "questions.Choice",
         "pk": 23,
         "fields": {
+<<<<<<< HEAD
             "question": 3,
             "choice_text": "history",
             "coefficient": 0.2
+=======
+            "question": 4,
+            "choice_text": "society",
+            "coefficient": 0.4
+>>>>>>> origin
         }
     },
     {
         "model": "questions.Choice",
         "pk": 24,
         "fields": {
+<<<<<<< HEAD
             "question": 3,
             "choice_text": "adventure",
             "coefficient": 0.2
+=======
+            "question": 5,
+            "choice_text": "teen movie",
+            "coefficient": 0.8
+>>>>>>> origin
         }
     },
     {
         "model": "questions.Choice",
         "pk": 25,
         "fields": {
+<<<<<<< HEAD
             "question": 3,
             "choice_text": "romance",
             "coefficient": 0.6
+=======
+            "question": 5,
+            "choice_text": "good action movie",
+            "coefficient": 0.8
+>>>>>>> origin
         }
     },
     {
         "model": "questions.Choice",
         "pk": 26,
         "fields": {
+<<<<<<< HEAD
             "question": 3,
             "choice_text": "science fiction",
             "coefficient": 0.7
+=======
+            "question": 5,
+            "choice_text": "romantic comendy",
+            "coefficient": 0.4
+>>>>>>> origin
         }
     },
     {
         "model": "questions.Choice",
         "pk": 27,
         "fields": {
+<<<<<<< HEAD
             "question": 3,
             "choice_text": "thriller",
             "coefficient": 0.8
@@ -393,6 +471,11 @@
             "question": 6 ,
             "choice_text": "The Green Mile",
             "coefficient": 0
+=======
+            "question": 5,
+            "choice_text": "funny movie",
+            "coefficient": 0.1
+>>>>>>> origin
         }
     }
 ]
