@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Movies{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+<h2 style="margin: 0.5rem 0.5rem 2rem;">Movies</h2>
+
+<form action="{% url 'movies_list_sort_by_mood_rating' %}" method="POST">{% csrf_token %}
+    <input type="submit" value="Sort by mood rating" class="btn btn-primary">
+</form>
+<form action="{% url 'movies_list_sort_by_rating' %}" method="POST">{% csrf_token %}
+    <input type="submit" value="Sort by rating" class="btn btn-primary">
+</form>
+<a href="{% url 'home' %}" class="btn btn-light">Home</a>
+<div style="display: flex; flex-wrap: wrap; width: 100%;">
+    {% for movie in movies %}
+    <div class=" card" style="width: 15rem; margin: 1.5rem 1rem;">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Title: {{ movie.title }}</li>
+            <li class="list-group-item">Rating: {{ movie.ratings }} </li>
+            <li class="list-group-item">Genres: {{ movie.genres }} </li>
+            <li class="list-group-item">Our Rating: {{ movie.mood_rate }} </li>
+            <li class="list-group-item">
+                <form action="{% url 'movies_list' %}" method="POST">{% csrf_token %}
+                    {{ form }} <input id="title" name="title" type="hidden" value="{{movie.title}}">
+                    <input type="submit" value="Rate" class="btn btn-primary">
+                </form>
+            </li>
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

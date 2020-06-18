@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Rating{% endblock %}
+{% block content %}
+
+<h1>Movies</h1>
+<BR>
+{% if form %}
+<FORM METHOD=post>
+ {% csrf_token %}
+
+The film has a rating {{ form }}</FORM>
+{% endif %}
+
+
+
+{% endblock %}
+
