@@ -36,10 +36,16 @@ class GetMoviePreferences(forms.Form):
     questions = get_questions()
     choices = get_choices(len(questions))
 
-    mood = forms.ChoiceField(choices=choices[0], label=questions[0])
-    genre = forms.ChoiceField(choices=choices[1], label=questions[1])
+    mood = forms.ChoiceField(choices=choices[0], label=questions[0], widget=forms.Select(
+        attrs={'class': 'form-control'}))
+    genre = forms.ChoiceField(choices=choices[1], label=questions[1], widget=forms.Select(
+        attrs={'class': 'form-control'}))
     will_lead_to_reflect = forms.ChoiceField(
-        choices=choices[2], label=questions[2])
-    lead_to_think = forms.ChoiceField(choices=choices[3], label=questions[3])
-    kind = forms.ChoiceField(choices=choices[4], label=questions[4])
-    loud_movies = forms.ChoiceField(choices=choices[5], label=questions[5])
+        choices=choices[2], label=questions[2], widget=forms.Select(
+            attrs={'class': 'form-control'}))
+    lead_to_think = forms.ChoiceField(choices=choices[3], label=questions[3], widget=forms.Select(
+            attrs={'class': 'form-control'}))
+    kind = forms.ChoiceField(choices=choices[4], label=questions[4], widget=forms.Select(
+        attrs={'class': 'form-control'}))
+    loud_movies = forms.ChoiceField(choices=choices[5], label=questions[5], widget=forms.Select(
+        attrs={'class': 'form-control'}))
