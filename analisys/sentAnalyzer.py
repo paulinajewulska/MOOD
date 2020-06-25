@@ -1,14 +1,20 @@
 import json
-
-from analisys.word2vect import tokenizer_obj, max_length, model
+import pickle
+import os
 from analisys.csvtojson import csvtojson
-
+from keras.models import load_model
 from tensorflow.python.keras.preprocessing.sequence import pad_sequences
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 
 def main():
-    # csvtojson()
 
+    with open('tokenizer.pickle', 'rb') as handle:
+        tokenizer_obj = pickle.load(handle)
+
+    model = load_model('model.h5')
+
+    # csvtojson()
     genres = []
     with open('analisys/tmdb_movie.json') as infile:
         movie = json.load(infile)
@@ -16,13 +22,12 @@ def main():
     movie2 = []
     g = 0
     with open('moviesent.json', 'w') as f:
-
         for i in range(0, len(movie)):
             if movie[i]['overview'] is not None:
                 sentiment = []
                 text = movie[i]['overview']
                 text_tokens = tokenizer_obj.texts_to_sequences(text)
-                tex_tokens_pad = pad_sequences(text_tokens, maxlen=max_length)
+                tex_tokens_pad = pad_sequences(text_tokens, maxlen=35)
                 sentiment = model.predict(x=tex_tokens_pad)
                 movie2.append({"title": movie[i]['original_title'], "year": movie[i]['release_year'],
                                "director": movie[i]['director'], "cast": movie[i]['cast'], "link": movie[i]['homepage'],
