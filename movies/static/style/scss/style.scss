@@ -58,6 +58,13 @@ h1 {
             width: fit-content;
         }
     }
+    &__text-list {
+        display: flex;
+        flex-direction: column;
+        a {
+            margin: 1rem 0;
+        }
+    }
     &__options {
         display: flex;
         align-items: center;
@@ -147,4 +154,10 @@ h1 {
     &__select {
         margin-top: 1rem;
     }
+}
+
+.btn-logout {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
 }

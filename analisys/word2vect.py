@@ -14,6 +14,7 @@ from keras.layers.convolutional import MaxPooling1D
 from keras.initializers import Constant
 from keras.layers.embeddings import Embedding
 from gensim.models import Word2Vec
+import pickle
 from analisys.makecsv import makecsv
 
 # ---------preprocessdata
@@ -21,131 +22,150 @@ from analisys.makecsv import makecsv
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-# makecsv()
 
-df = pd.DataFrame()
-df = pd.read_csv('analisys/movie_data.csv', encoding='utf-8')
-review_lines = list()
-lines = df['review'].values.tolist()
+def main():
+    # makecsv()
 
-for line in lines:
-    tokens = word_tokenize(line)
-    # convert to lower case
-    tokens = [w.lower() for w in tokens]
-    # remove punctuation from each word
-    table = str.maketrans('', '', string.punctuation)
-    stripped = [w.translate(table) for w in tokens]
-    # remove remaining tokens that are not alphabetic
-    words = [word for word in stripped if word.isalpha()]
-    # filter out stop words
-    stop_words = set(stopwords.words('english'))
-    words = [w for w in words if not w in stop_words]
-    review_lines.append(words)
+    df = pd.DataFrame()
+    df = pd.read_csv('analisys/movie_data.csv', encoding='utf-8')
+    review_lines = list()
+    lines = df['review'].values.tolist()
 
-EMBEDDING_DIM = 100
-# train word2vec model
-model = gensim.models.Word2Vec(sentences=review_lines, size=EMBEDDING_DIM, window=5, workers=4, min_count=1)
-# vocab size
-words = list(model.wv.vocab)
+    for line in lines:
+        tokens = word_tokenize(line)
+        # convert to lower case
+        tokens = [w.lower() for w in tokens]
+        # remove punctuation from each word
+        table = str.maketrans('', '', string.punctuation)
+        stripped = [w.translate(table) for w in tokens]
+        # remove remaining tokens that are not alphabetic
+        words = [word for word in stripped if word.isalpha()]
+        # filter out stop words
+        stop_words = set(stopwords.words('english'))
+        words = [w for w in words if not w in stop_words]
+        review_lines.append(words)
 
-# save model in ASCII (word2vec) format
-filename = 'imdb_embedding_word2vec.txt'
-model.wv.save_word2vec_format(filename, binary=False)
+    EMBEDDING_DIM = 100
+    # train word2vec model
+    model = gensim.models.Word2Vec(
+        sentences=review_lines, size=EMBEDDING_DIM, window=5, workers=4, min_count=1)
+    # vocab size
+    words = list(model.wv.vocab)
 
-embeddings_index = {}
-f = open(os.path.join('', 'imdb_embedding_word2vec.txt'), encoding="utf-8")
-for line in f:
-    values = line.split()
-    word = values[0]
-    coefs = np.asarray(values[1:])
-    embeddings_index[word] = coefs
-f.close()
+    # save model in ASCII (word2vec) format
+    filename = 'imdb_embedding_word2vec.txt'
+    model.wv.save_word2vec_format(filename, binary=False)
 
-X_train = df.loc[:24999, 'review'].values
-y_train = df.loc[:24999, 'sentiment'].values
-X_test = df.loc[25000:, 'review'].values
-y_test = df.loc[25000:, 'sentiment'].values
+    embeddings_index = {}
+    f = open(os.path.join('', 'imdb_embedding_word2vec.txt'), encoding="utf-8")
+    for line in f:
+        values = line.split()
+        word = values[0]
+        coefs = np.asarray(values[1:])
+        embeddings_index[word] = coefs
+    f.close()
 
-total_reviews = X_train + X_test
+    X_train = df.loc[:24999, 'review'].values
+    y_train = df.loc[:24999, 'sentiment'].values
+    X_test = df.loc[25000:, 'review'].values
+    y_test = df.loc[25000:, 'sentiment'].values
 
-max_length = 35  # try other options like mean of sentence lengths
+    total_reviews = X_train + X_test
 
-VALIDATION_SPLIT = 0.2
+    max_length = 35  # try other options like mean of sentence lengths
 
-# vectorize the text samples into a 2D integer tensor
-tokenizer_obj = Tokenizer()
-tokenizer_obj.fit_on_texts(review_lines)
-sequences = tokenizer_obj.texts_to_sequences(review_lines)
+    VALIDATION_SPLIT = 0.2
 
-# pad sequences
-word_index = tokenizer_obj.word_index
+    # vectorize the text samples into a 2D integer tensor
+    tokenizer_obj = Tokenizer()
+    tokenizer_obj.fit_on_texts(review_lines)
+    sequences = tokenizer_obj.texts_to_sequences(review_lines)
 
-review_pad = pad_sequences(sequences, maxlen=max_length)
-sentiment = df['sentiment'].values
+    # pad sequences
+    word_index = tokenizer_obj.word_index
 
-# split the data into a training set and a validation set
-indices = np.arange(review_pad.shape[0])
-np.random.shuffle(indices)
-review_pad = review_pad[indices]
-sentiment = sentiment[indices]
-num_validation_samples = int(VALIDATION_SPLIT * review_pad.shape[0])
+    review_pad = pad_sequences(sequences, maxlen=max_length)
+    sentiment = df['sentiment'].values
 
-X_train_pad = review_pad[:-num_validation_samples]
-y_train = sentiment[:-num_validation_samples]
-X_test_pad = review_pad[-num_validation_samples:]
-y_test = sentiment[-num_validation_samples:]
+    # split the data into a training set and a validation set
+    indices = np.arange(review_pad.shape[0])
+    np.random.shuffle(indices)
+    review_pad = review_pad[indices]
+    sentiment = sentiment[indices]
+    num_validation_samples = int(VALIDATION_SPLIT * review_pad.shape[0])
 
-num_words = len(word_index) + 1
-embedding_matrix = np.zeros((num_words, EMBEDDING_DIM))
+    X_train_pad = review_pad[:-num_validation_samples]
+    y_train = sentiment[:-num_validation_samples]
+    X_test_pad = review_pad[-num_validation_samples:]
+    y_test = sentiment[-num_validation_samples:]
 
-for word, i in word_index.items():
-    if i > num_words:
-        continue
-    embedding_vector = embeddings_index.get(word)
-    if embedding_vector is not None:
-        # words not found in embedding index will be all-zeros.
-        embedding_matrix[i] = embedding_vector
+    num_words = len(word_index) + 1
+    embedding_matrix = np.zeros((num_words, EMBEDDING_DIM))
 
-# define model
-model = Sequential()
-# load pre-trained word embeddings into an Embedding layer
-# note that we set trainable = False so as to keep the embeddings fixed
-embedding_layer = Embedding(num_words,
-                            EMBEDDING_DIM,
-                            embeddings_initializer=Constant(embedding_matrix),
-                            input_length=max_length,
-                            trainable=False)
+    for word, i in word_index.items():
+        if i > num_words:
+            continue
+        embedding_vector = embeddings_index.get(word)
+        if embedding_vector is not None:
+            # words not found in embedding index will be all-zeros.
+            embedding_matrix[i] = embedding_vector
 
-model.add(embedding_layer)
-model.add(Conv1D(filters=128, kernel_size=5, activation='relu'))
-model.add(MaxPooling1D(pool_size=2))
-model.add(Flatten())
-model.add(Dense(1, activation='sigmoid'))
+    # define model
+    model = Sequential()
+    # load pre-trained word embeddings into an Embedding layer
+    # note that we set trainable = False so as to keep the embeddings fixed
+    embedding_layer = Embedding(num_words,
+                                EMBEDDING_DIM,
+                                embeddings_initializer=Constant(
+                                    embedding_matrix),
+                                input_length=max_length,
+                                trainable=False)
 
-# compile network
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model.add(embedding_layer)
+    model.add(Conv1D(filters=128, kernel_size=5, activation='relu'))
+    model.add(MaxPooling1D(pool_size=2))
+    model.add(Flatten())
+    model.add(Dense(1, activation='sigmoid'))
 
-# fit the model
-model.fit(X_train_pad, y_train, batch_size=128, epochs=25, validation_data=(X_test_pad, y_test), verbose=2)
+    # compile network
+    model.compile(loss='binary_crossentropy',
+                  optimizer='adam', metrics=['accuracy'])
 
-# define model
-model = Sequential()
-embedding_layer = Embedding(num_words,
-                            EMBEDDING_DIM,
-                            embeddings_initializer=Constant(embedding_matrix),
-                            input_length=max_length,
-                            trainable=False)
-model.add(embedding_layer)
-model.add(GRU(units=32, dropout=0.2, recurrent_dropout=0.2))
-model.add(Dense(1, activation='sigmoid'))
+    # fit the model
+    model.fit(X_train_pad, y_train, batch_size=128, epochs=25,
+              validation_data=(X_test_pad, y_test), verbose=2)
 
-# try using different optimizers and different optimizer configs
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.fit(X_train_pad, y_train, batch_size=128, epochs=25, validation_data=(X_test_pad, y_test), verbose=2)
+    # define model
+    model = Sequential()
+    embedding_layer = Embedding(num_words,
+                                EMBEDDING_DIM,
+                                embeddings_initializer=Constant(
+                                    embedding_matrix),
+                                input_length=max_length,
+                                trainable=False)
+    model.add(embedding_layer)
+    model.add(GRU(units=32, dropout=0.2, recurrent_dropout=0.2))
+    model.add(Dense(1, activation='sigmoid'))
 
-score, acc = model.evaluate(X_test_pad, y_test, batch_size=128)
+    # try using different optimizers and different optimizer configs
+    model.compile(loss='binary_crossentropy',
+                  optimizer='adam', metrics=['accuracy'])
+    model.fit(X_train_pad, y_train, batch_size=128, epochs=25,
+              validation_data=(X_test_pad, y_test), verbose=2)
 
-print('Test score:', score)
-print('Test accuracy:', acc)
+    score, acc = model.evaluate(X_test_pad, y_test, batch_size=128)
 
-print("Accuracy: {0:.2%}".format(acc))
+    print('Test score:', score)
+    print('Test accuracy:', acc)
+
+    print("Accuracy: {0:.2%}".format(acc))
+
+    # save model and token
+    with open('tokenizer.pickle', 'wb') as handle:
+        pickle.dump(tokenizer_obj, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+    model.save("model.h5")
+
+
+if __name__ == '__main__':
+    main()

@@ -7,6 +7,7 @@ from movies.filtermovie import filtermovie
 from .forms import GetMoviePreferences
 from mood.services import MOVIE_STORAGE_SERVICE, MOVIE_RATING_SERVICE
 
+
 def get_all_questions(request):
 
     form = GetMoviePreferences()

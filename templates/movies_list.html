@@ -22,10 +22,10 @@
             <li class="list-group-item">Genres: {{ movie.genres }} </li>
             <li class="list-group-item">Our Rating: {{ movie.mood_rate }} </li>
             <li class="list-group-item">
-{#                <form action="{% url 'movies_list' %}" method="POST">{% csrf_token %}#}
-{#                    {{ form }} <input id="title" name="title" type="hidden" value="{{movie.title}}">#}
-{#                    <input type="submit" value="Rate" class="btn btn-primary">#}
-{#                </form>#}
+                <form action="{% url 'movies_list' %}" method="POST">{% csrf_token %}
+                    {{ form }} <input id="title" name="title" type="hidden" value="{{movie.title}}">
+                    <input type="submit" value="Rate" class="btn btn-primary">
+                </form>
             </li>
         </ul>
     </div>

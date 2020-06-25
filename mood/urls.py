@@ -30,7 +30,9 @@ urlpatterns = [
     path("results/choice", choice_movie, name="choice_movie"),
     path("movies_list/", sort_movie_list, name="movies_list"),
     path("movies_rating/", get_movies_rating, name="movies_rating"),
-    path("movies_list_sort_by_mood_rating/", get_movies_sorted_by_mood_rating, name="movies_list_sort_by_mood_rating"),
-    path("movies_list_sort_by_rating/", get_movies_list_sort_by_rating, name="movies_list_sort_by_rating"),
+    path("movies_list_sort_by_mood_rating/", get_movies_sorted_by_mood_rating,
+         name="movies_list_sort_by_mood_rating"),
+    path("movies_list_sort_by_rating/", get_movies_list_sort_by_rating,
+         name="movies_list_sort_by_rating"),
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
 ]
