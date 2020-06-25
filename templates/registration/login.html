@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+{% load static %}
+{% block content %}
+<div class="home">
+  <div class="home__image">
+    <img src="{% static 'images/hugo-co-workers.png' %}">
+  </div>
+  <div class="home__text">
+
+    <h1>Login</h1>
+    <div class="home__login">
+      <form method="post">
+        <div class="home__login__form">
+          {% csrf_token %}
+          {{ form.as_p }}
+        </div>
+        <button type="submit" value="Login" class="btn btn-warning home__login__btn">Login</button>
+      </form>
+    </div>
+    <div class="home__account">
+      Don't have an account?
+      <a href="{% url 'signup' %}" class="btn btn-light">Sign up</a>
+    </div>
+    {% endblock %}
+  </div>
+</div>

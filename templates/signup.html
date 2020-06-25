@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign up{% endblock %}
+{% load static %}
+{% block content %}
+<div class="home">
+  <div class="home__image">
+    <img src="{% static 'images/hugo-co-workers.png' %}">
+  </div>
+  <div class="home__text">
+    <h1>Sign up</h1>
+    <div class="home__login">
+      <form method="post">
+        <div class="home__login__form">
+          {% csrf_token %}
+          {{ form.as_p }}
+        </div>
+        <button type="submit" value="Sign up" class="btn btn-warning home__login__btn">Sign up</button>
+      </form>
+    </div>
+    {% endblock %}
+  </div>
+</div>

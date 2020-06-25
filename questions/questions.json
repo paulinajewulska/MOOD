@@ -1,0 +1,50 @@
+[
+    {
+        "model": "questions.Question",
+        "pk": 1,
+        "fields": {
+            "question_text": "What is your mood today?",
+            "question_category": "mood"
+        }
+    },
+    {
+        "model": "questions.Question",
+        "pk": 2,
+        "fields": {
+            "question_text": "Which genre of movies to do prefer?",
+            "question_category": "genre"
+        }
+    },
+    {
+        "model": "questions.Question",
+        "pk": 3,
+        "fields": {
+            "question_text": "What movies do you dislike?",
+            "question_category": "will_lead_to_reflect"
+        }
+    },
+    {
+        "model": "questions.Question",
+        "pk": 4,
+        "fields": {
+            "question_text": "The movie should: ",
+            "question_category": "lead_to_think"
+        }
+    },
+    {
+        "model": "questions.Question",
+        "pk": 5,
+        "fields": {
+            "question_text": "What ending movie do you prefer?",
+            "question_category": "kind"
+        }
+    },
+    {
+        "model": "questions.Question",
+        "pk": 6,
+        "fields": {
+            "question_text": "Which of these loud movies do you like best?",
+            "question_category": "loud_movies"
+        }
+    }
+]
