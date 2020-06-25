@@ -26,10 +26,11 @@ def get_results(request):
             'will_lead_to_reflect': request.POST['will_lead_to_reflect'],
             'lead_to_think': request.POST['lead_to_think'],
             'kind': request.POST['kind'],
+            "loud_movies": request.POST["loud_movies"],
         }
 
         movies = filtermovie(
-            result['genre'], result['mood'], result['will_lead_to_reflect'], result['lead_to_think'], result['kind'])
+            result['genre'], result['mood'], result['will_lead_to_reflect'], result['lead_to_think'], result['kind'], result["loud_movies"])
 
         context = {
             'movies': movies

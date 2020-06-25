@@ -7,7 +7,7 @@ from tensorflow.python.keras.preprocessing.sequence import pad_sequences
 
 
 def main():
-    #csvtojson()
+    # csvtojson()
 
     genres = []
     with open('analisys/tmdb_movie.json') as infile:
@@ -33,7 +33,6 @@ def main():
         # print(sentiment)
         json.dump(movie2, f, indent=2)
 
-
     with open('genres.json', 'w') as f1:
         for i in range(0, len(movie)):
             txt = movie[i]['genres']
@@ -43,7 +42,6 @@ def main():
                     if x[y] not in genres:
                         genres.append(x[y])
         json.dump(genres, f1, indent=2)
-
 
 
 if __name__ == "__main__":

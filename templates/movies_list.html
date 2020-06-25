@@ -4,7 +4,7 @@
 
 {% block content %}
 {% csrf_token %}
-<h2 style="margin: 0.5rem 0.5rem 2rem;">Movies</h2>
+<h2>Movies</h2>
 
 <form action="{% url 'movies_list_sort_by_mood_rating' %}" method="POST">{% csrf_token %}
     <input type="submit" value="Sort by mood rating" class="btn btn-primary">
@@ -13,9 +13,9 @@
     <input type="submit" value="Sort by rating" class="btn btn-primary">
 </form>
 <a href="{% url 'home' %}" class="btn btn-light">Home</a>
-<div style="display: flex; flex-wrap: wrap; width: 100%;">
+<div>
     {% for movie in movies %}
-    <div class=" card" style="width: 15rem; margin: 1.5rem 1rem;">
+    <div class="card">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">Title: {{ movie.title }}</li>
             <li class="list-group-item">Rating: {{ movie.ratings }} </li>

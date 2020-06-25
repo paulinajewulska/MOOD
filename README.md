@@ -40,11 +40,31 @@ for creating this dataset from "aclImdb dataset"  we can use this scripts makecs
 
 - for correct working of word2vect.py script we must run also  scripts/downloadmodule.py that install additional module to our work enviorement
 
+### Sentiment analisys:
+
+- for user mood analysis we are using tool vaderSentiment but for getting sentiment score for movies we are using word2vect model we decided to  proceed  in thi way becouse the scrpit word2vect.py is too slow to give back sentiment and don’t have sense wait 3 / 4  minute for  get user mood
+
+ usefull link:
+-	for word2vect model : https://radimrehurek.com/gensim/models/word2vec.html
+-	for dataset aclImdb :http://ai.stanford.edu/~amaas/data/sentiment/
+-	guide used for understanding how to implement word2vect : https://towardsdatascience.com/machine-learning-word-embedding-sentiment-classification-using-keras-b83c28087456
+
+ Datasets:
+ 
+- tmdb_movies_data.csv: used for creating tmdb_movies.json 
+- movie_data.csv used for traint and test model word2vect ,this  file contain 50k reviews of films with sentiment score 0(negative) or 1(positive)  so  we thought Is suitable for our case
+for creating this dataset from "aclImdb dataset"  we can use this scripts makecsv.py  but we are not sure to use this scripts becouse movie_data is 65.9 mb so it will be more fast if we put csv file in project folder
+
+
+- for correct working of word2vect.py script we must run also  scripts/downloadmodule.py that install additional module to our work enviorement
+
 # Technology stack: 
 
 - Frontend: Django Templates, Bootstrap 
 - Backend: Python, Django 
 - Database: SQLite 
+
+Illustrations by https://icons8.com.
 
 # Features 
 
