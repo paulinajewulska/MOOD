@@ -1,8 +1,9 @@
 import json
+from mood.services import MOVIE_STORAGE_SERVICE
 from analisys.analyzer import analyzer
 
 
-def filtermovie(genre, answer1, answer2, answer3, answer4, answer5):
+def filtermovie(genre: object, answer1: object, answer2: object, answer3: object, answer4: object, answer5: object) -> object:
     sentanswer1 = analyzer(answer1)
     sentanswer2 = analyzer(answer2)
     sentanswer3 = analyzer(answer3)
@@ -11,16 +12,13 @@ def filtermovie(genre, answer1, answer2, answer3, answer4, answer5):
     sentgenre = analyzer(genre)
     sentuser = (sentanswer1 + sentanswer2 +
                 sentanswer3 + sentanswer4 + sentanswer5 + sentgenre) / 5
-    movie2 = []
-    with open('movies/moviesent.json') as infile:
-        movie = json.load(infile)
 
-    for i in range(0, len(movie)):
-        txt = movie[i]['genres']
-        x = txt.split("|")
-        for y in range(0, len(x)):
-            if genre.lower() in x[y].lower():
-                if movie[i]['sentiment'] >= sentuser:
-                    movie2.append(
-                        {"title": movie[i]['title'], "ratings": movie[i]['ratings'], "genres": movie[i]['genres']})
-    return (movie2)
+    filtered_movies = []
+    movies = MOVIE_STORAGE_SERVICE.get_all()
+    for movie in movies:
+        if movie.get_sentiment() < sentuser:
+            continue
+        if genre.lower() in movie.get_genres():
+            filtered_movies.append(movie)
+
+    return filtered_movies

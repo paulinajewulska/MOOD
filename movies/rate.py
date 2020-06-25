@@ -9,7 +9,7 @@ def rate(title, rate):
         if data[i]['title'] == title:
             data[i]["ratings"] = (data[i]["ratings"] + rate) / 2
 
-    ## Save our changes to JSON file
+    # Save our changes to JSON file
     jsonFile = open("moviesent.json", "w+")
-    jsonFile.write(json.dumps(data,indent=2))
+    jsonFile.write(json.dumps(data, indent=2))
     jsonFile.close()

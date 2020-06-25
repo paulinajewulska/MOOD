@@ -1,8 +1,11 @@
+from typing import Dict, Any
+
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
 from movies.filtermovie import filtermovie
 from .forms import GetMoviePreferences
+from mood.services import MOVIE_STORAGE_SERVICE, MOVIE_RATING_SERVICE
 
 
 def get_all_questions(request):
@@ -16,11 +19,10 @@ def get_all_questions(request):
 
 
 def get_results(request):
-
     if request.method == 'POST':
 
         form = GetMoviePreferences(request.POST)
-        result = {
+        result: Dict[str, Any] = {
             'mood': request.POST['mood'],
             'genre': request.POST['genre'],
             'will_lead_to_reflect': request.POST['will_lead_to_reflect'],

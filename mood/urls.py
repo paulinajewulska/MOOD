@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
+
+from movie_rating.views import get_movies_rating, choice_movie
 from questions.views import get_all_questions, get_results
-from movies.views import get_movie_list, get_movies_rating, sort_movie_list, get_movies_sorted_by_mood_rating, get_movies_list_sort_by_rating
+from movies.views import sort_movie_list, get_movies_sorted_by_mood_rating, get_movies_list_sort_by_rating
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -25,6 +27,7 @@ urlpatterns = [
     path("users/", include("django.contrib.auth.urls")),
     path("questions/", get_all_questions, name="questions"),
     path("results/", get_results, name="results"),
+    path("results/choice", choice_movie, name="choice_movie"),
     path("movies_list/", sort_movie_list, name="movies_list"),
     path("movies_rating/", get_movies_rating, name="movies_rating"),
     path("movies_list_sort_by_mood_rating/", get_movies_sorted_by_mood_rating,

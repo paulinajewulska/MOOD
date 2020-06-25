@@ -21,6 +21,8 @@ from analisys.makecsv import makecsv
 
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
+
 def main():
     # makecsv()
 
@@ -45,7 +47,8 @@ def main():
 
     EMBEDDING_DIM = 100
     # train word2vec model
-    model = gensim.models.Word2Vec(sentences=review_lines, size=EMBEDDING_DIM, window=5, workers=4, min_count=1)
+    model = gensim.models.Word2Vec(
+        sentences=review_lines, size=EMBEDDING_DIM, window=5, workers=4, min_count=1)
     # vocab size
     words = list(model.wv.vocab)
 
@@ -113,7 +116,8 @@ def main():
     # note that we set trainable = False so as to keep the embeddings fixed
     embedding_layer = Embedding(num_words,
                                 EMBEDDING_DIM,
-                                embeddings_initializer=Constant(embedding_matrix),
+                                embeddings_initializer=Constant(
+                                    embedding_matrix),
                                 input_length=max_length,
                                 trainable=False)
 
@@ -124,16 +128,19 @@ def main():
     model.add(Dense(1, activation='sigmoid'))
 
     # compile network
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model.compile(loss='binary_crossentropy',
+                  optimizer='adam', metrics=['accuracy'])
 
     # fit the model
-    model.fit(X_train_pad, y_train, batch_size=128, epochs=25, validation_data=(X_test_pad, y_test), verbose=2)
+    model.fit(X_train_pad, y_train, batch_size=128, epochs=25,
+              validation_data=(X_test_pad, y_test), verbose=2)
 
     # define model
     model = Sequential()
     embedding_layer = Embedding(num_words,
                                 EMBEDDING_DIM,
-                                embeddings_initializer=Constant(embedding_matrix),
+                                embeddings_initializer=Constant(
+                                    embedding_matrix),
                                 input_length=max_length,
                                 trainable=False)
     model.add(embedding_layer)
@@ -141,8 +148,10 @@ def main():
     model.add(Dense(1, activation='sigmoid'))
 
     # try using different optimizers and different optimizer configs
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-    model.fit(X_train_pad, y_train, batch_size=128, epochs=25, validation_data=(X_test_pad, y_test), verbose=2)
+    model.compile(loss='binary_crossentropy',
+                  optimizer='adam', metrics=['accuracy'])
+    model.fit(X_train_pad, y_train, batch_size=128, epochs=25,
+              validation_data=(X_test_pad, y_test), verbose=2)
 
     score, acc = model.evaluate(X_test_pad, y_test, batch_size=128)
 
@@ -151,13 +160,12 @@ def main():
 
     print("Accuracy: {0:.2%}".format(acc))
 
-
-    #save model and token
+    # save model and token
     with open('tokenizer.pickle', 'wb') as handle:
         pickle.dump(tokenizer_obj, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-
     model.save("model.h5")
+
 
 if __name__ == '__main__':
     main()

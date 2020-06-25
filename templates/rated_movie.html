@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Movies{% endblock %}
+
+{% block content %}
+{% csrf_token %}
+<h2>Movies</h2>
+<a href="{% url 'home' %}" class="btn btn-light">Home</a>
+<div>
+    {% for movie in rated_movie %}
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Title: {{ movie.movie_details.get_name }}</li>
+            <li class="list-group-item">Rating: {{ movie.movie_details.get_rating }} </li>
+            <li class="list-group-item">Genres: {{ movie.movie_details.get_genres }} </li>
+            <li class="list-group-item">Our Rating: {{ movie.rating.name }} ({{ movie.rating.value }}) </li>
+            <li class="list-group-item">
+                <form action="{% url 'movies_rating' %}" method="POST">
+                    {% csrf_token %}
+                    <select name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5" selected>5</option>
+                    </select>
+                    <input name="movie_id" type="hidden" value="{{movie.movie_details.get_id}}">
+                    <input type="submit" value="Rate" class="btn btn-primary">
+                </form>
+            </li>
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

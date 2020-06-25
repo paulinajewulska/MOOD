@@ -6,16 +6,19 @@
 <h2 style="margin: 0.5rem 0.5rem 2rem;">Movies</h2>
 <div style="display: flex; flex-wrap: wrap; width: 100%;">
     {% for movie in movies %}
-    <form method="post"">
-        <div class=" card" style="width: 15rem; margin: 1.5rem 1rem;">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Title: {{ movie.title }}</li>
-            <li class="list-group-item">Rating: {{ movie.ratings }} </li>
-            <li class="list-group-item">Genres: {{ movie.genres }} </li>
-        </ul>
-</div>
-</form>
-{% endfor %}
+    <div class=" card" style="width: 15rem; margin: 1.5rem 1rem;">
+        <div class="card-item">
+            <h5>{{ movie.get_name }}</h5>
+        </div>
+        <div class="card-item">Rating: {{ movie.get_rating }} </div>
+        <div class="card-item">Genres: <br> {{ movie.get_genres }} </div>
+        <form method="POST" class="card-item" action="{% url 'choice_movie' %}">
+            {% csrf_token %}
+            <input hidden name="movie_id" value="{{ movie.get_id }}">
+            <input class="btn btn-info" type="submit" value="Choice this">
+        </form>
+    </div>
+    {% endfor %}
 </div>
 
 {% endblock %}
