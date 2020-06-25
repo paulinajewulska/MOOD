@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
 from questions.views import get_all_questions, get_results
-from movies.views import get_movie_list , get_movies_rating, sort_movie_list, get_movies_sorted_by_mood_rating, get_movies_list_sort_by_rating
+from movies.views import get_movie_list, get_movies_rating, sort_movie_list, get_movies_sorted_by_mood_rating, get_movies_list_sort_by_rating
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -26,8 +26,10 @@ urlpatterns = [
     path("questions/", get_all_questions, name="questions"),
     path("results/", get_results, name="results"),
     path("movies_list/", sort_movie_list, name="movies_list"),
-    path("movies_rating/",get_movies_rating, name="movies_rating"),
-    path("movies_list_sort_by_mood_rating/", get_movies_sorted_by_mood_rating, name="movies_list_sort_by_mood_rating"),
-    path("movies_list_sort_by_rating/", get_movies_list_sort_by_rating, name="movies_list_sort_by_rating"),
+    path("movies_rating/", get_movies_rating, name="movies_rating"),
+    path("movies_list_sort_by_mood_rating/", get_movies_sorted_by_mood_rating,
+         name="movies_list_sort_by_mood_rating"),
+    path("movies_list_sort_by_rating/", get_movies_list_sort_by_rating,
+         name="movies_list_sort_by_rating"),
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
 ]

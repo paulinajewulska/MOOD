@@ -44,7 +44,7 @@ class GetMoviePreferences(forms.Form):
         choices=choices[2], label=questions[2], widget=forms.Select(
             attrs={'class': 'form-control'}))
     lead_to_think = forms.ChoiceField(choices=choices[3], label=questions[3], widget=forms.Select(
-            attrs={'class': 'form-control'}))
+        attrs={'class': 'form-control'}))
     kind = forms.ChoiceField(choices=choices[4], label=questions[4], widget=forms.Select(
         attrs={'class': 'form-control'}))
     loud_movies = forms.ChoiceField(choices=choices[5], label=questions[5], widget=forms.Select(
