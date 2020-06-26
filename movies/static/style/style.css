@@ -244,3 +244,59 @@ h1 {
   top: 2rem;
   right: 2rem;
 }
+
+.movies {
+  margin: 3rem;
+  width: calc(100vw - 6rem);
+  height: calc(100vh - 6rem);
+}
+
+.movies__sorting {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 3rem 0;
+}
+
+.movies__sorting form {
+  margin-right: 1rem;
+}
+
+.movies__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 5rem;
+}
+
+.movies__card {
+  padding: 1.25rem;
+  width: 16rem;
+  height: 16rem;
+  margin: 1rem;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.rated {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 1rem;
+}
+
+.rated select {
+  margin: 0 1rem 0 0;
+  width: 2rem;
+  height: 2rem;
+}
