@@ -161,3 +161,42 @@ h1 {
     top: 2rem;
     right: 2rem;
 }
+
+// movies
+.movies {
+    margin: 3rem;
+    width: calc(100vw - 6rem);
+    height: calc(100vh - 6rem);
+    &__sorting {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 3rem 0;
+        form {
+            margin-right: 1rem;
+        }
+    }
+    &__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5rem;
+    }
+    &__card {
+        padding: 1.25rem;
+        width: 16rem;
+        height: 16rem;
+        margin: 1rem;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
+}
+
+.rated {
+    display: flex;
+    margin-top: 1rem;
+    select {
+        margin: 0 1rem 0 0;
+        width: 2rem;
+        height: 2rem;
+    }
+}
