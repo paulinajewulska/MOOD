@@ -6,6 +6,7 @@ from keras.models import load_model
 from tensorflow.python.keras.preprocessing.sequence import pad_sequences
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
+
 def main():
 
     with open('tokenizer.pickle', 'rb') as handle:
