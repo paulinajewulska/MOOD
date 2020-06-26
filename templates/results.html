@@ -1,24 +1,38 @@
 {% extends 'base.html' %}
-{% block title %}Results{% endblock %}
+{% block title %}Movies{% endblock %}
 
 {% block content %}
 {% csrf_token %}
-<h2 style="margin: 0.5rem 0.5rem 2rem;">Movies</h2>
-<div style="display: flex; flex-wrap: wrap; width: 100%;">
-    {% for movie in movies %}
-    <div class=" card" style="width: 15rem; margin: 1.5rem 1rem;">
-        <div class="card-item">
-            <h5>{{ movie.get_name }}</h5>
-        </div>
-        <div class="card-item">Rating: {{ movie.get_rating }} </div>
-        <div class="card-item">Genres: <br> {{ movie.get_genres }} </div>
-        <form method="POST" class="card-item" action="{% url 'choice_movie' %}">
-            {% csrf_token %}
-            <input hidden name="movie_id" value="{{ movie.get_id }}">
-            <input class="btn btn-info" type="submit" value="Choice this">
+<section class="movies">
+    <h2 class="movies__headline">Movies</h2>
+    <div class="movies__sorting">
+        <form action="{% url 'questions' %}" method="POST">{% csrf_token %}
+            <input type="submit" value="⬅️" class="btn btn-light">
+        </form>
+        <form action="{% url 'movies_list_sort_by_rating' %}" method="POST">{% csrf_token %}
+            <input type="submit" value="Sort by rating" class="btn btn-light">
         </form>
     </div>
-    {% endfor %}
-</div>
 
+    <div class="movies__wrapper">
+        {% for movie in movies %}
+        <div class="movies__card rounded">
+            <div class="card-item">
+                <h5>{{ movie.get_name }}</h5>
+            </div>
+            <div class="card__item">Rating: {{ movie.get_rating }} </div>
+            <div class="card__item">Genres: {{ movie.get_genres }} </div>
+            <div class="card__item">Our Rating: {{ movie.rating.name }} ({{ movie.rating.value }}) </div>
+            {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'choice_movie' %}">
+                {% csrf_token %}
+                <input hidden name="movie_id" value="{{ movie.get_id }}">
+                <input class="btn card__btn btn-light" type="submit" value="I choose this ❤️">
+            </form>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
 {% endblock %}
